@@ -1,0 +1,26 @@
+#
+# 20providers
+#
+{
+    use esmith::NetworksDB;
+    my $ndb = esmith::NetworksDB->open_ro();
+    foreach my $provider ( $ndb->get_all_by_prop('type' => 'provider') ) {
+        my $name = $provider->key;
+        my $device = $provider->prop('interface') || next;
+        my $checkip = $provider->prop('checkip') || next;
+        my @members;
+        my $i = 1;
+        foreach (split(',',$checkip)) {
+            push(@members, "$name$i");
+            $OUT .= "connection {\n name=$name$i\n checkip=$_\n device=$device\n}\n";
+            $i++;
+        }
+        $OUT .= "group {\n name=$name\n logic=0\n";
+        foreach (@members) {
+            $OUT .= " member-connection=$_\n";
+        }
+        $OUT .= "\n}\n";
+    }
+
+}
+

@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# (C) 2009,2013 Mika Ilmaranta <ilmis@nullnet.fi>
+# Copyright © 2009-2010 Tuomo Soini <tis@foobar.fi>
+#
+# License: GPLv2
+#
+
+#
+# event handling script for use with shorewall multi-isp setup
+# To be able to utilize this script you must have shorewall >= 4.4.23.3
+#
+
+STATE=${1}
+NAME=${2}
+CHECKIP=${3}
+DEVICE=${4}
+WARN_EMAIL=${5}
+REPLIED=${6}
+WAITING=${7}
+TIMEOUT=${8}
+REPLY_LATE=${9}
+CONS_RCVD=${10}
+CONS_WAIT=${11}
+CONS_MISS=${12}
+AVG_RTT=${13}
+SRCIP=${14}
+PREVSTATE=${15}
+TIMESTAMP=${16}
+
+if [ ${DEVICE} = "NA" ]; then
+   exit 0
+fi
+
+if [ ${STATE} = up ]; then
+  logger -i -p kern.info -t Shorewall Enabling device ${DEVICE}
+  ${VARDIR}/firewall enable ${DEVICE}
+else
+  logger -i -p kern.info -t Shorewall Disabling device ${DEVICE}
+   ${VARDIR}/firewall disable ${DEVICE}
+fi
+
+exit 0;
+
+#EOF
