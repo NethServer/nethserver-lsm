@@ -12,7 +12,7 @@ debug=8
 defaults \{
   name=defaults
   checkip=127.0.0.1
-  eventscript=/usr/share/lsm/shorewall_script_nethesis
+  eventscript=/usr/libexec/nethserver/lsm-wan-link-update
   notifyscript=
   max_packet_loss=3
   max_successive_pkts_lost=2
