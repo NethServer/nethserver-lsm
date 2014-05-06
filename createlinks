@@ -39,7 +39,6 @@ event_templates($event, qw(
 
 event_services($event, 
    'lsm' => 'restart',
-   'rsyslog' => 'restart'
 );
 
 #
