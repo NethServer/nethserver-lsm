@@ -6,6 +6,8 @@
     my $ndb = esmith::NetworksDB->open_ro();
     foreach my $provider ( $ndb->get_all_by_prop('type' => 'provider') ) {
         my $name = $provider->key;
+        my $status = $provider->prop('status') || 'disabled';
+        next if ($status eq 'disabled');
         my $device = $provider->prop('interface') || next;
         my $checkip = $provider->prop('checkip') || next;
         my @members;
