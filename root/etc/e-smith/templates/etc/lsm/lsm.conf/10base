@@ -14,11 +14,11 @@ defaults \{
   checkip=127.0.0.1
   eventscript=/usr/libexec/nethserver/lsm-wan-link-update
   notifyscript=
-  max_packet_loss=20
-  max_successive_pkts_lost=7
-  min_packet_loss=5
-  min_successive_pkts_rcvd=10
-  interval_ms=2000
+  max_packet_loss=9
+  max_successive_pkts_lost=3
+  min_packet_loss=8
+  min_successive_pkts_rcvd=3
+  interval_ms=5000
   timeout_ms=2000
   warn_email=root
   check_arp=0
