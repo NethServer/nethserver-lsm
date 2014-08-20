@@ -36,3 +36,7 @@ echo "%doc COPYING" >> %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Wed Aug 20 2014 Davide Principi <davide.principi@nethesis.it> - 1.0.0-1.ns6
+- Link monitor daemon - Feature #2333 [NethServer]
+- Firewall-base: add support for multi-wan - Feature #2332 [NethServer]
+
