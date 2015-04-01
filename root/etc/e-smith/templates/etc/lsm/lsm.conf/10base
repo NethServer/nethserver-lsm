@@ -15,7 +15,7 @@ defaults \{
   eventscript=/usr/libexec/nethserver/lsm-wan-link-update
   notifyscript=
   max_packet_loss=9
-  max_successive_pkts_lost=3
+  max_successive_pkts_lost=6
   min_packet_loss=8
   min_successive_pkts_rcvd=3
   interval_ms=5000
