@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -36,6 +36,9 @@ echo "%doc COPYING" >> %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Thu Apr 09 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.2-1
+- LSM: configuration tuning - Enhancement #3098 [NethServer]
+
 * Thu Oct 02 2014 Davide Principi <davide.principi@nethesis.it> - 1.0.1-1.ns6
 - Handle nethserver-firewall-base uninstallation - Enhancement #2873 [NethServer]
 
