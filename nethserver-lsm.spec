@@ -8,9 +8,7 @@ Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch
 
 Requires: nethserver-base
-Requires: lsm >= 0.179
-
-BuildRequires: perl
+Requires: lsm 
 BuildRequires: nethserver-devtools 
 
 %description
@@ -26,14 +24,12 @@ perl createlinks
 rm -rf $RPM_BUILD_ROOT
 (cd root; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 %{genfilelist} $RPM_BUILD_ROOT > %{name}-%{version}-filelist
-echo "%doc COPYING" >> %{name}-%{version}-filelist
-
-%post
-
-%preun
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
+%doc COPYING
+%dir %{_nseventsdir}/%{name}-update
+
 
 %changelog
 * Thu Apr 09 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.2-1
