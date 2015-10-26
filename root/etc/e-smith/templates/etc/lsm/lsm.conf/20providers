@@ -4,7 +4,8 @@
 {
     use esmith::NetworksDB;
     my $ndb = esmith::NetworksDB->open_ro();
-    my $checkip = $firewall{'CheckIP'} || '8.8.8.8';
+    my $checkip = $firewall{'CheckIP'} || '8.8.8.8,208.67.222.222';
+    my $notify = $firewall{'NotifyWan'} || 'disabled';
     foreach my $provider ( $ndb->get_all_by_prop('type' => 'provider') ) {
         my $name = $provider->key;
         my $status = $provider->prop('status') || 'disabled';
@@ -14,12 +15,16 @@
         my $i = 1;
         foreach (split(',',$checkip)) {
             push(@members, "$name$i");
-            $OUT .= "connection {\n name=$name$i\n checkip=$_\n device=$device\n}\n";
+            $OUT .= "connection {\n  name=$name$i\n  checkip=$_\n  device=$device\n  status=1\n}\n";
             $i++;
         }
-        $OUT .= "group {\n name=$name\n logic=0\n";
+        $OUT .= "group {\n  name=$name\n  logic=0\n";
+        $OUT .= "  eventscript=/usr/libexec/nethserver/lsm-wan-link-update\n";
+        if ( $notify eq 'enabled' ) {
+            $OUT .= "  notifyscript=/usr/libexec/nethserver/lsm-wan-notify\n";
+        }
         foreach (@members) {
-            $OUT .= " member-connection=$_\n";
+            $OUT .= "  member-connection=$_\n";
         }
         $OUT .= "\n}\n";
     }

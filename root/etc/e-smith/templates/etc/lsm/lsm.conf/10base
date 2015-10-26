@@ -12,13 +12,19 @@ debug=8
 defaults \{
   name=defaults
   checkip=127.0.0.1
-  eventscript=/usr/libexec/nethserver/lsm-wan-link-update
+  eventscript=
   notifyscript=
-  max_packet_loss=9
-  max_successive_pkts_lost=6
-  min_packet_loss=8
-  min_successive_pkts_rcvd=3
-  interval_ms=5000
+{
+    my $mppl = $firewall{'MaxPercentPacketLoss'} || 10;
+    my $mnpl = $firewall{'MaxNumberPacketLoss'} || 5;
+    my $interval = $firewall{'PingInterval'} || 5;
+    $OUT .= "  max_packet_loss=".(100-$mppl)."\n";
+    $OUT .= "  min_packet_loss=".(100-$mppl-1)."\n";
+    $OUT .= "  max_successive_pkts_lost=$mnpl\n";
+    $OUT .= "  min_successive_pkts_rcvd=$mnpl\n";
+    $OUT .= "  interval_ms=".($interval*1000)."\n";
+
+}
   timeout_ms=2000
   warn_email=root
   check_arp=0
