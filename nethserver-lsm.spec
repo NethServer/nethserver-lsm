@@ -8,7 +8,7 @@ Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch
 
 Requires: nethserver-base
-Requires: lsm >= 0.179
+Requires: lsm >= 0.190
 
 BuildRequires: perl
 BuildRequires: nethserver-devtools 
