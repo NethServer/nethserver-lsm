@@ -4,7 +4,7 @@
 #
 #debug=10
 #debug=9
-debug=8
+debug=2
 
 #
 # Defaults for the connection entries
