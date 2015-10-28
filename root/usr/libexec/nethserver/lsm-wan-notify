@@ -36,7 +36,7 @@ DEVICE=`/sbin/e-smith/db networks getprop ${NAME} interface`
 cat <<EOM | mail -r $from -s "MultiWAN state change: ${NAME} - ${STATE}" $to
 
 Hi,
-your Internet link "${NAME}" has changed its state to "${STATE}" at ${DATE}.
+your Internet provider "${NAME}" has changed its state to "${STATE}" at ${DATE}.
 
 Details:
 * previous state was: ${PREVSTATE}
