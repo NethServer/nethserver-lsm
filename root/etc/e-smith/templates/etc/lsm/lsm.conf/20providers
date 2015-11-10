@@ -18,7 +18,7 @@
             $OUT .= "connection {\n  name=$name$i\n  checkip=$_\n  device=$device\n  status=1\n}\n";
             $i++;
         }
-        $OUT .= "group {\n  name=$name\n  logic=0  status=1\n";
+        $OUT .= "group {\n  name=$name\n  logic=0\n  status=1\n";
         $OUT .= "  eventscript=/usr/libexec/nethserver/lsm-wan-link-update\n";
         if ( $notify eq 'enabled' ) {
             $OUT .= "  notifyscript=/usr/libexec/nethserver/lsm-wan-notify\n";
