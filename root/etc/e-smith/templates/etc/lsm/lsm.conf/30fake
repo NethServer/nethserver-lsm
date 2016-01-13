@@ -1,0 +1,27 @@
+#
+# 30fake
+#
+{
+    use esmith::NetworksDB;
+    my $ndb = esmith::NetworksDB->open_ro();
+    if ( scalar($ndb->get_all_by_prop('type' => 'provider')) eq 0 ) {
+    $OUT = <<EOF
+#
+# start LSM even if no provider is configured
+#
+connection {
+   name=fake
+   checkip=127.0.0.1
+   eventscript=
+   notifyscript=
+   max_packet_loss=0
+   max_successive_pkts_lost=-1
+   min_packet_loss=-1
+   min_successive_pkts_rcvd=-1
+   interval_ms=100000000000000
+   timeout_ms=1000
+   warn_email=
+}
+EOF
+    }
+}
