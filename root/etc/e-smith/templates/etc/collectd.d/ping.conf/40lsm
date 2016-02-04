@@ -1,0 +1,25 @@
+{
+    use NethServer::Firewall;
+
+    my $fw = new NethServer::Firewall();
+    my @providers = $fw->getProviders();
+    if (scalar(@providers) < 2) {
+        return '';
+    }
+
+    $OUT = <<EOF
+LoadPlugin table
+<Plugin "table">
+  <Table "/var/lib/lsm/status.rtt">
+    Instance "wan"
+    Separator " "
+    <Result>
+      Type ping
+      InstancesFrom 0
+      ValuesFrom 1
+    </Result>
+  </Table>
+</Plugin>
+EOF
+
+}
