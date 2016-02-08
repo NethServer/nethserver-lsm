@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# Copyright (C) 2012,2015 Tuomo Soini <tis@foobar.fi>
+# Modified by NethServer
+#
+# License: GPLv2
+#
+
+#
+# event handling script for use with lsm groups
+#
+
+STATE=${1}
+NAME=${2}
+CHECKIP=${3}
+DEVICE=${4}
+WARN_EMAIL=${5}
+REPLIED=${6}
+WAITING=${7}
+TIMEOUT=${8}
+REPLY_LATE=${9}
+CONS_RCVD=${10}
+CONS_WAIT=${11}
+CONS_MISS=${12}
+AVG_RTT=${13}
+SRCIP=${14}
+PREVSTATE=${15}
+TIMESTAMP=${16}
+
+DATE=$(date --date=@${TIMESTAMP})
+
+from=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
+to=`/sbin/e-smith/config getprop firewall NotifyWanTo`
+DEVICE=`/sbin/e-smith/db networks getprop ${NAME} interface`
+
+cat <<EOM | mail -r $from -s "MultiWAN state change: ${NAME} - ${STATE}" $to
+
+Hi,
+your Internet provider "${NAME}" has changed its state to "${STATE}" at ${DATE}.
+
+Details:
+* previous state was: ${PREVSTATE}
+* associated device is: ${DEVICE}
+
+EOM
+
+exit 0
+#
