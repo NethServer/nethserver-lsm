@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.1.0
+Version: 1.1.1
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Feb 18 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.1-1
+- Latency monitoring in multiwan - Enhancement #3351
+
 * Wed Nov 11 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.0-1
 - MultiWAN: remove static routes for checkip - Enhancement #3289 [NethServer]
 
