@@ -13,7 +13,7 @@
         my $eth = $ndb->get($device) || next;
         my $bootproto = $eth->prop('bootproto') || 'none';
         if ($bootproto eq 'none') {
-            my $ip = $eth->prop('ipaddr') || next;
+            my $ip = $eth->prop('ipaddr') || '';
             $sourceip = "  sourceip=$ip\n";
         }
         my @members;
