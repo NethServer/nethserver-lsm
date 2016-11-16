@@ -27,6 +27,11 @@ SRCIP=${14}
 PREVSTATE=${15}
 TIMESTAMP=${16}
 
+# avoid alerts on lsm restart
+if [ ${PREVSTATE} = 'unknown' ]; then
+    exit 0
+fi
+
 DATE=$(date --date=@${TIMESTAMP})
 
 from=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
