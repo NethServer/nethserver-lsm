@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.1.2
+Version: 1.1.3
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -36,6 +36,9 @@ echo "%doc COPYING" >> %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Tue Nov 22 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.3-1
+- MultiWAN provider remains disabled after failure - Bug #3431
+
 * Fri Nov 04 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.2-1
 - lsm.conf: provider status is unknown on restart. Refs #3427
 
