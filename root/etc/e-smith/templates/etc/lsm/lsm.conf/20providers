@@ -7,16 +7,21 @@
     my $checkip = $firewall{'CheckIP'} || '8.8.8.8,208.67.222.222';
     my $notify = $firewall{'NotifyWan'} || 'disabled';
     foreach my $provider ( $ndb->get_all_by_prop('type' => 'provider') ) {
+        my $sourceip = '';
         my $name = $provider->key;
         my $device = $provider->prop('interface') || next;
-        my @members;
-        my $i = 1;
-        foreach (split(',',$checkip)) {
-            push(@members, "$name$i");
-            $OUT .= "connection {\n  name=$name$i\n  checkip=$_\n  device=$device\n  status=1\n}\n";
-            $i++;
+        my $eth = $ndb->get($device) || next;
+        my $bootproto = $eth->prop('bootproto') || 'none';
+        if ($bootproto eq 'none') {
+            my $ip = $eth->prop('ipaddr') || next;
+            $sourceip = "  sourceip=$ip\n";
         }
-        $OUT .= "group {\n  name=$name\n  logic=0\n  status=1\n";
+        my @members;
+        foreach (split(',',$checkip)) {
+            push(@members, "$name-$_");
+            $OUT .= "connection {\n  name=$name$i\n  checkip=$_\n  device=$device\n$sourceip}\n";
+        }
+        $OUT .= "group {\n  name=$name\n  logic=0\n";
         $OUT .= "  eventscript=/usr/libexec/nethserver/lsm-wan-link-update\n";
         if ( $notify eq 'enabled' ) {
             $OUT .= "  notifyscript=/usr/libexec/nethserver/lsm-wan-notify\n";
