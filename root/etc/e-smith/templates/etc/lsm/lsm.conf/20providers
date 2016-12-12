@@ -19,7 +19,7 @@
         my @members;
         foreach (split(',',$checkip)) {
             push(@members, "$name-$_");
-            $OUT .= "connection {\n  name=$name$i\n  checkip=$_\n  device=$device\n$sourceip}\n";
+            $OUT .= "connection {\n  name=$name-$_\n  checkip=$_\n  device=$device\n$sourceip}\n";
         }
         $OUT .= "group {\n  name=$name\n  logic=0\n";
         $OUT .= "  eventscript=/usr/libexec/nethserver/lsm-wan-link-update\n";
