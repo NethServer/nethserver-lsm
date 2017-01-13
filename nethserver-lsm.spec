@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.2.0
+Version: 1.2.1
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 13 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.2.1-1
+- Shorewall: upgrade to 5.0.14 - NethServer/dev#5172
+
 * Thu Jul 07 2016 Stefano Fancello <stefano.fancello@nethesis.it> - 1.2.0-1
 - First NS7 release
 
