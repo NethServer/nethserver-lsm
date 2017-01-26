@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.2.1
+Version: 1.2.2
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Jan 26 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.2.2-1
+- lsm.conf: use empty sourceip for dynamic links (PPPoE) - Refs #3431
+
 * Fri Jan 13 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.2.1-1
 - Shorewall: upgrade to 5.0.14 - NethServer/dev#5172
 
