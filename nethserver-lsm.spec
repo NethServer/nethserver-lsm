@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.1.3
+Version: 1.1.4
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -36,6 +36,9 @@ echo "%doc COPYING" >> %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Thu Jun 01 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.4-1
+- (Backport) Multi WAN: false alarm on busy link - NethServer/dev#5305
+
 * Tue Nov 22 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.3-1
 - MultiWAN provider remains disabled after failure - Bug #3431
 
