@@ -34,8 +34,17 @@ fi
 
 DATE=$(date --date=@${TIMESTAMP})
 
-from=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
-to=`/sbin/e-smith/config getprop firewall NotifyWanTo`
+
+toEmailRoot=`/sbin/e-smith/config getprop root EmailAddress`
+
+if [[ -n $toEmailRoot ]]; then
+    to=${toEmailRoot/,/ }
+    from=`/sbin/e-smith/config getprop root SenderAddress`
+else
+    from=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
+    to=`/sbin/e-smith/config getprop firewall NotifyWanTo`
+fi
+
 DEVICE=`/sbin/e-smith/db networks getprop ${NAME} interface`
 
 cat <<EOM | mail -r $from -s "MultiWAN state change: ${NAME} - ${STATE}" $to
