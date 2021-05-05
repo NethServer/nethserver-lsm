@@ -39,7 +39,7 @@ NotifyWanTo=`/sbin/e-smith/config getprop firewall NotifyWanTo | tr ',' ' '`
 NotificationFrom=`/sbin/e-smith/config getprop root SenderAddress`
 NotificationTo=`/sbin/e-smith/config getprop root EmailAddress | tr ',' ' '`
 
-if [[ -n $NotifyWanTo ]]; then
+if [[ -n $NotifyWanTo && $NotifyWanTo != 'root@localhost' ]]; then
     to=${NotifyWanTo}
     from=${NotifyWanFrom}
 elif [[ -n $NotificationTo ]]; then
