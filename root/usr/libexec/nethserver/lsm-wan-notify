@@ -34,21 +34,8 @@ fi
 
 DATE=$(date --date=@${TIMESTAMP})
 
-NotifyWanFrom=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
-NotifyWanTo=`/sbin/e-smith/config getprop firewall NotifyWanTo | tr ',' ' '`
-NotificationFrom=`/sbin/e-smith/config getprop root SenderAddress`
-NotificationTo=`/sbin/e-smith/config getprop root EmailAddress | tr ',' ' '`
-
-if [[ -n $NotifyWanTo ]]; then
-    to=${NotifyWanTo}
-    from=${NotifyWanFrom}
-elif [[ -n $NotificationTo ]]; then
-    to=${NotificationTo}
-    from=${NotificationFrom}
-else 
-    to=root@localhost
-    from=no-reply@`/usr/sbin/e-smith/config get DomainName`
-fi
+from=`/sbin/e-smith/config getprop firewall NotifyWanFrom`
+to=`/sbin/e-smith/config getprop firewall NotifyWanTo | tr ',' ' '`
 
 DEVICE=`/sbin/e-smith/db networks getprop ${NAME} interface`
 
