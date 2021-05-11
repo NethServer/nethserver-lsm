@@ -1,6 +1,6 @@
 Summary: NethServer Link Status Monitor configuration
 Name: nethserver-lsm
-Version: 1.2.3
+Version: 1.2.4
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue May 11 2021 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.2.4-1
+- WAN: notification of wan down not sent - Bug NethServer/dev#6497
+
 * Thu Jun 01 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.2.3-1
 - Multi WAN: false alarm on busy link - NethServer/dev#5305
 
